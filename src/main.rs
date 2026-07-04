@@ -14,7 +14,7 @@ fn fac(n: i32) -> i32 {
 fn taylor_ln(a: f64, n: u32) -> f64 {
     // Gives an estimate of the ln function
     // using Taylor series
-    // for numbers between -1 an    d 1  
+    // for numbers between -1 and 1  
     // 
     // # How to use :
     //  taylor_ln(number-1.0, 20)
