@@ -16,7 +16,8 @@ pub fn fib(n: i32) -> Vec<i32> {
 pub fn conway(n: i32) -> String {
     // the Conway sequence
     let mut u = String::from("1");
-    for _ in 0..n {
+    println!("0 0");
+    for k in 1..n+1 {
         let mut next_u = String::from("");
         let mut i = 0;
         let bytes = u.as_bytes();
@@ -26,13 +27,14 @@ pub fn conway(n: i32) -> String {
                 i += 1;
                 count += 1;
             }
-
+            
             next_u.push_str(&count.to_string());
             next_u.push(bytes[i] as char);
             
             i += 1;
         }
-        u = next_u;
+        u = next_u.clone();
+        println!("{} {}", k, next_u);
     }
     u
 }
