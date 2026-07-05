@@ -36,3 +36,19 @@ pub fn conway(n: i32) -> String {
     }
     u
 }
+
+pub fn collatz(n: i32) -> Vec<i32> {
+    // The Collatz (or Syracuse) sequence
+    let mut u = n;
+    let mut result = Vec::new();
+    while u > 1 {
+        if u % 2 == 1 {
+            u = 3*u + 1;
+        } else {
+            u /= 2;
+        }
+        result.push(u);
+    }
+
+    result
+} 
