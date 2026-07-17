@@ -1,9 +1,9 @@
-pub fn fac(n: i32) -> i32 {
+pub fn fac(n: u32) -> u128 {
     // The factorial function
     if n == 0 {
         return 1;
     } else {
-        return n * fac(n-1);
+        return n as u128 * fac(n-1);
     }
 }
 
