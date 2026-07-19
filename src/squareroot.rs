@@ -1,3 +1,6 @@
+use rug::Float;
+
+
 pub fn root_of_two(n: i32) -> f64 {
     // don't forget to subtract 1
     if n == 0 {
