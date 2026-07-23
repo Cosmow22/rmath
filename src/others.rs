@@ -1,9 +1,12 @@
-pub fn fac(n: u32) -> u128 {
+use rug::Integer;
+
+
+pub fn fac(n: u32) -> Integer {
     // The factorial function
     if n == 0 {
-        return 1;
+        return Integer::from(1);
     } else {
-        return n as u128 * fac(n-1);
+        return Integer::from(n) * fac(n-1);
     }
 }
 
