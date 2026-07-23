@@ -1,12 +1,12 @@
 use rug::Float;
 
 
-pub fn root_of_two(n: i32) -> f64 {
+pub fn root_of_two(n: u32, prec: u32) -> Float {
     // don't forget to subtract 1
     if n == 0 {
-        return 2.0;
+        return Float::with_val(prec, 2);
     }
-    return 2.0 + (1.0 / root_of_two(n-1))
+    return Float::with_val(prec, 2 + (1 / root_of_two(n-1, prec)))
 }
 
 
