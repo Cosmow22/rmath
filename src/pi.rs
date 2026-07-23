@@ -24,6 +24,11 @@ pub fn liebniz(n: i32, k: i32) -> f64 {
 }
 
 pub fn ramanujan(n: u32, k: u32, prec: u32) -> Float {
+    // Estimate pi with the Ramanujan forumula.
+    // 
+    // How to use :
+    // println!("{}", Float::with_val(prec, 1 /  (2*(root_of_two(n, prec)-1)/9801 * ramanujan(n, 0, prec))));
+
     let num = Float::with_val(prec, fac((4 * k) as u32))
         * Float::with_val(prec, 1103 + 26390 * k);
 
