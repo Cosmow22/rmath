@@ -1,15 +1,24 @@
 use std::io;
 
-mod others;
+mod squareroot;
 mod pi;
-mod squareroot; 
+mod others;
 
-use squareroot::squareroot;
+use pi::ramanujan;
+use squareroot::root_of_two;
+use rug::Float;
+
 
 fn main() {
+    println!("Enter n and precision (space separated):");
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("failed to read line");
-    let number: u32 = input.trim().parse().unwrap();
-    println!("{}", 1.0 /  ((2.0*squareroot(2.0, 1e-15)/9801.0) as f64 * pi::ramanujan(number, 0)))
-    // println!("{}", others::fac(number))
+
+    let mut parts = input.split_whitespace();
+
+    let n: u32 = parts.next().unwrap().parse().unwrap();
+    let prec: u32 = (parts.next().unwrap().parse::<f64>().unwrap() * 3.32 ) as u32;
+    // println!("{}", Float::with_val(prec, 1 /  (2.0*squareroot(2.0, 0.0001)/9801.0 * ramanujan(n, 0, prec))))
+    // println!("{}", Float::with_val(prec, 1 /  (2*(root_of_two(n, prec)-1)/9801 * ramanujan(n, 0, prec))));
+    println!("{}", Float::with_val(prec, 1 /  (2*Float::with_val(prec, 2).sqrt() / 9801  *  ramanujan(n, 0, prec))));
 }

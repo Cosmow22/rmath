@@ -1,3 +1,8 @@
+use crate::others::fac;
+use rug::Float;
+use rug::ops::Pow;
+
+
 pub fn brouncker(n: i32, k: f64) -> f64 {
     // Estimate pi with Brouncker continued fraction.
     // 
@@ -18,15 +23,21 @@ pub fn liebniz(n: i32, k: i32) -> f64 {
     return (-1.0f64).powi(k) / (2*k + 1) as f64 + liebniz(n-1, k+1)
 }
 
-use crate::others::fac;
+pub fn ramanujan(n: u32, k: u32, prec: u32) -> Float {
+    // Estimate pi with the Ramanujan forumula.
+    // 
+    // How to use :
+    // println!("{}", Float::with_val(prec, 1 /  (2*(root_of_two(n, prec)-1)/9801 * ramanujan(n, 0, prec))));
 
-pub fn ramanujan(n: u32, k: u32) -> f64{
-    let num = fac((4 * k) as u32) as f64 * (1103 + 26390*k) as f64;
+    let num = Float::with_val(prec, fac((4 * k) as u32))
+        * Float::with_val(prec, 1103 + 26390 * k);
 
-    let den = (fac(k as u32) as f64).powi(4) * 396.0_f64.powf((4 * k) as f64);
+    let den = Float::with_val(prec, fac(k as u32))
+        .pow(4)
+        * Float::with_val(prec, 396).pow(4 * k);
 
     if n == 0 {
         return num / den
     }
-    return num / den + ramanujan(n-1, k+1)
+    return num / den + ramanujan(n-1, k+1, prec)
 }   
