@@ -1,3 +1,4 @@
+use std::io;
 use std::f64::consts::PI;
 
 pub fn cos_complementary(x: f64) -> f64 {
@@ -62,4 +63,20 @@ pub fn cordic(n: i32, angle_rad:f64) -> (f64, f64) {
     }
 
     (cos * cos_sign as f64, sin * sin_sign as f64)
+}
+
+pub fn run_cordic() {
+    println!("Enter n and x (space separated):");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("failed to read line");
+
+    let mut parts = input.split_whitespace();
+
+    let n: i32 = parts.next().unwrap().parse().unwrap();
+    let mut angle: f64 = parts.next().unwrap().parse().unwrap();
+
+    angle = angle * PI / 180.0;
+    let (cos, sin) = cordic(n, angle);
+    println!("cos : {}", cos);
+    println!("sin : {}", sin);
 }
