@@ -3,7 +3,7 @@ use std::f64::consts::PI;
 
 pub fn cos_complementary(x: f64) -> f64 {
     let x = x * PI / 180.0;
-    println!("{}", x);
+    println!("{} rad", x);
     let (cos, sin) = cordic(30, PI/2.0 - x);
     return sin;
 }
