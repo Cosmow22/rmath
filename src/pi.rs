@@ -27,6 +27,7 @@ pub fn ramanujan(n: u32, k: u32, prec: u32) -> Float {
     // Estimate pi with the Ramanujan forumula.
     // 
     // How to use :
+    // let prec: u32 = (parts.next().unwrap().parse::<f64>().unwrap() * 3.32 ) as u32;
     // println!("{}", Float::with_val(prec, 1 /  (2*Float::with_val(prec, 2).sqrt() / 9801  *  ramanujan(n, 0, prec))));
     // adds 8 new decimal places to each new term
     // so, divide the number of digits you want by 8 to get the number of terms to use
