@@ -1,11 +1,49 @@
 use std::f64::consts::PI;
 
+pub fn cos_complementary(x: f64) -> f64 {
+    let x = x * PI / 180.0;
+    println!("{}", x);
+    let (cos, sin) = cordic(30, PI/2.0 - x);
+    return sin;
+}
 
-pub fn cordic(n: i32, angle:f64) {
+fn reduce(mut angle_rad: f64) -> (f64, i8, i8) {
+
+    let mut cos_sign: i8 = 1;
+    let mut sin_sign: i8 = 1;
+
+    while angle_rad > PI {
+        angle_rad -= 2.0*PI;  
+    }
+    while angle_rad < -PI {
+        angle_rad += 2.0*PI;
+    }
+    
+    if angle_rad  > PI / 2.0 {
+        angle_rad = PI - angle_rad;
+        cos_sign = -1;   
+    }
+    
+    if angle_rad < -PI / 2.0 {
+        angle_rad += PI;
+        cos_sign = -1;   
+        sin_sign = -1;   
+    }
+    
+    return (angle_rad, cos_sign, sin_sign)
+}
+
+pub fn cordic(n: i32, angle_rad:f64) -> (f64, f64) {
+    
+    let (reduced_angle_rad, cos_sign, sin_sign) = reduce(angle_rad);
+    println!("reduced angle : {}", reduced_angle_rad);
+    println!("cos_sign : {}", cos_sign);
+    println!("sin_sign : {}", sin_sign);
+    
     let K = 0.607252935;
     let mut cos = K;
     let mut sin = 0.0;
-    let mut z = angle * PI / 180.0;
+    let mut z = reduced_angle_rad;
     let mut d;
 
     for i in 0..n {
@@ -23,6 +61,5 @@ pub fn cordic(n: i32, angle:f64) {
         sin = sin_new;  
     }
 
-    println!("cos({}) = {}", angle, cos);
-    println!("sin({}) = {}", angle, sin);
+    (cos * cos_sign as f64, sin * sin_sign as f64)
 }
