@@ -3,8 +3,6 @@ use std::f64::consts::PI;
 
 use crate::others::fac;
 
-use rug::ops::CompleteRound;
-
 
 pub fn cos_complementary(x: f64) -> f64 {
     let x = x * PI / 180.0;
@@ -15,7 +13,7 @@ pub fn cos_complementary(x: f64) -> f64 {
 
 pub fn maclaurin_sin(n: u32, k: u32, x: f64) -> f64 {
     // let x = 60.0 * PI / 180.0;
-    // println!("{}", sin(10, 0, x));
+    // println!("{}", maclaurin_sin(10, 0, x));
     let exp = 2 * k + 1;
     let term = (-1.0f64).powi(k as i32) * x.powi(exp as i32) / fac(exp).to_f64();
     if n == 0 {
