@@ -13,7 +13,7 @@ pub fn cos_complementary(x: f64) -> f64 {
     return sin;
 }
 
-pub fn taylor_sin(n: u32, k: u32, x: f64) -> f64 {
+pub fn maclaurin_sin(n: u32, k: u32, x: f64) -> f64 {
     // let x = 60.0 * PI / 180.0;
     // println!("{}", sin(10, 0, x));
     let exp = 2 * k + 1;
@@ -21,10 +21,10 @@ pub fn taylor_sin(n: u32, k: u32, x: f64) -> f64 {
     if n == 0 {
         return term
     }
-    return term + taylor_sin(n-1, k+1, x)
+    return term + maclaurin_sin(n-1, k+1, x)
 }
 
-pub fn taylor_cos(n:u32, k:u32, x: f64) -> f64 {
+pub fn maclaurin_cos(n:u32, k:u32, x: f64) -> f64 {
     // let x = 60.0 * PI / 180.0;
     // println!("{}", taylor_cos(10, 0, x));
     let exp = 2 * k;
@@ -32,7 +32,7 @@ pub fn taylor_cos(n:u32, k:u32, x: f64) -> f64 {
     if n == 0 {
         return term
     }
-    return term + taylor_cos(n-1, k+1, x)
+    return term + maclaurin_cos(n-1, k+1, x)
 }
 
 
