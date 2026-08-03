@@ -24,6 +24,17 @@ pub fn taylor_sin(n: u32, k: u32, x: f64) -> f64 {
     return term + taylor_sin(n-1, k+1, x)
 }
 
+pub fn taylor_cos(n:u32, k:u32, x: f64) -> f64 {
+    // let x = 60.0 * PI / 180.0;
+    // println!("{}", taylor_cos(10, 0, x));
+    let exp = 2 * k;
+    let term = (-1.0f64).powi(k as i32) * x.powi(exp as i32) / fac(exp).to_f64();
+    if n == 0 {
+        return term
+    }
+    return term + taylor_cos(n-1, k+1, x)
+}
+
 
 fn reduce(mut angle_rad: f64) -> (f64, i8, i8) {
 

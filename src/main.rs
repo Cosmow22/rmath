@@ -3,9 +3,9 @@ use std::f64::consts::PI;
 
 mod others;
 mod trigo;
-use trigo::taylor_sin;
+use trigo::taylor_cos;
 
 fn main() {
-    let x = 60.0 * PI / 180.0;
-    println!("{}", taylor_sin(10, 0, x));
+    let x = 149.0 * PI / 180.0;
+    println!("{}", taylor_cos(10, 0, x));
 }
