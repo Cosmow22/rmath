@@ -1,12 +1,29 @@
 use std::io;
 use std::f64::consts::PI;
 
+use crate::others::fac;
+
+use rug::ops::CompleteRound;
+
+
 pub fn cos_complementary(x: f64) -> f64 {
     let x = x * PI / 180.0;
     println!("{} rad", x);
     let (cos, sin) = cordic(30, PI/2.0 - x);
     return sin;
 }
+
+pub fn taylor_sin(n: u32, k: u32, x: f64) -> f64 {
+    // let x = 60.0 * PI / 180.0;
+    // println!("{}", sin(10, 0, x));
+    let exp = 2 * k + 1;
+    let term = (-1.0f64).powi(k as i32) * x.powi(exp as i32) / fac(exp).to_f64();
+    if n == 0 {
+        return term
+    }
+    return term + taylor_sin(n-1, k+1, x)
+}
+
 
 fn reduce(mut angle_rad: f64) -> (f64, i8, i8) {
 

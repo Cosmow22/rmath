@@ -1,9 +1,11 @@
 // use std::io;
+use std::f64::consts::PI;
 
+mod others;
 mod trigo;
-use trigo::cos_complementary;
+use trigo::taylor_sin;
 
 fn main() {
-    let x = 67.0;
-    println!("cos({}) = {}", x, cos_complementary(x));
+    let x = 60.0 * PI / 180.0;
+    println!("{}", taylor_sin(10, 0, x));
 }
